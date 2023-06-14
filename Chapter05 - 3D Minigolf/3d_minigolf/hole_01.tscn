@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlbeoehmabls0"]
+
+[ext_resource type="PackedScene" uid="uid://kx78gqu42hry" path="res://hole_02.tscn" id="2_jli8i"]
+[ext_resource type="PackedScene" uid="uid://dy1cr8jojc8mb" path="res://hole.tscn" id="6_5gic3"]
+
+[node name="Hole01" instance=ExtResource("6_5gic3")]
+next_hole = ExtResource("2_jli8i")
+
+[node name="GridMap" parent="." index="2"]
+data = {
+"cells": PackedInt32Array(65535, 65535, 23, 65535, 65534, 24, 65535, 65533, 24, 65535, 65532, 24, 65535, 65531, 1048591, 65534, 65531, 1441801, 0, 65531, 1441816, 1, 65531, 1048577, 65535, 65530, 655369)
+}
+
+[node name="Tee" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.481045, 0.693353, -0.28315)
+
+[node name="Arrow" parent="." index="5"]
+visible = false
+
+[node name="Hole" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49614, 0.452017, -4.49999)

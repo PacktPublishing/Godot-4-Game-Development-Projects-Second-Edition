@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://0ogweqyvnkj1"]
+
+[ext_resource type="FontFile" uid="uid://cg8kr11cqrt5s" path="res://assets/kenvector_future_thin.ttf" id="1_8guln"]
+[ext_resource type="Script" path="res://hud.gd" id="1_klot2"]
+[ext_resource type="Texture2D" uid="uid://de8w1i6h36eun" path="res://assets/player_small.png" id="2_af85j"]
+[ext_resource type="Texture2D" uid="uid://ds8vg4ut76q5j" path="res://assets/shield_gold.png" id="3_affak"]
+[ext_resource type="Texture2D" uid="uid://bj0d5pmgfherf" path="res://assets/bar_glass_200.png" id="4_0guwn"]
+[ext_resource type="Texture2D" uid="uid://0usqikigov8o" path="res://assets/play_button.png" id="4_akms8"]
+[ext_resource type="Texture2D" uid="uid://de1g5xta7ti3h" path="res://assets/play_button_h.png" id="5_sb8xd"]
+[ext_resource type="Texture2D" uid="uid://bkvghbus453m6" path="res://assets/bar_green_200.png" id="5_v8o5x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5pf8b"]
+font = ExtResource("1_8guln")
+font_size = 64
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_klot2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "0"
+label_settings = SubResource("LabelSettings_5pf8b")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_affak")
+stretch_mode = 3
+
+[node name="ShieldBar" type="TextureProgressBar" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 0.5
+texture_over = ExtResource("4_0guwn")
+texture_progress = ExtResource("5_v8o5x")
+
+[node name="LivesCounter" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="L1" type="TextureRect" parent="MarginContainer/HBoxContainer/LivesCounter"]
+layout_mode = 2
+texture = ExtResource("2_af85j")
+stretch_mode = 5
+
+[node name="L2" type="TextureRect" parent="MarginContainer/HBoxContainer/LivesCounter"]
+layout_mode = 2
+texture = ExtResource("2_af85j")
+stretch_mode = 5
+
+[node name="L3" type="TextureRect" parent="MarginContainer/HBoxContainer/LivesCounter"]
+layout_mode = 2
+texture = ExtResource("2_af85j")
+stretch_mode = 5
+
+[node name="StartButton" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.5
+offset_top = 111.5
+offset_right = 124.5
+offset_bottom = 176.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_akms8")
+texture_hover = ExtResource("5_sb8xd")
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Space Rocks!"
+label_settings = SubResource("LabelSettings_5pf8b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

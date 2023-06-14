@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dr70o3k2ejsii"
+path="res://.godot/imported/Riverside Ride Short Loop.wav-d5a86d94db6e5e7c084644efa33f1360.sample"
+
+[deps]
+
+source_file="res://assets/audio/Riverside Ride Short Loop.wav"
+dest_files=["res://.godot/imported/Riverside Ride Short Loop.wav-d5a86d94db6e5e7c084644efa33f1360.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=3 uid="uid://7vk5gxcjui3k"]
+
+[ext_resource type="Texture2D" uid="uid://c1sukia6s6faq" path="res://assets/space_background.png" id="1_4qns5"]
+[ext_resource type="Script" path="res://main.gd" id="1_hwlrv"]
+[ext_resource type="PackedScene" uid="uid://635mhv8wuo76" path="res://rock.tscn" id="2_5itln"]
+[ext_resource type="PackedScene" uid="uid://5tprgheswbeq" path="res://player.tscn" id="2_s6fyc"]
+[ext_resource type="PackedScene" uid="uid://by3rkvwiw7hca" path="res://enemy.tscn" id="3_u43hd"]
+[ext_resource type="PackedScene" uid="uid://0ogweqyvnkj1" path="res://hud.tscn" id="5_dv48b"]
+[ext_resource type="AudioStream" uid="uid://ckckxicfxlddy" path="res://assets/sounds/explosion.wav" id="7_co08d"]
+[ext_resource type="AudioStream" uid="uid://q7hmfuheyie6" path="res://assets/sounds/levelup.ogg" id="8_nv4bg"]
+[ext_resource type="AudioStream" uid="uid://1jfv7jitycu6" path="res://assets/sounds/Funky-Gameplay_Looping.ogg" id="9_6ablf"]
+
+[sub_resource type="Curve2D" id="Curve2D_jejaf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1152, 0)
+}
+point_count = 5
+
+[node name="Main" type="Node"]
+process_mode = 3
+script = ExtResource("1_hwlrv")
+rock_scene = ExtResource("2_5itln")
+enemy_scene = ExtResource("3_u43hd")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(580, 355)
+texture = ExtResource("1_4qns5")
+
+[node name="Player" parent="." instance=ExtResource("2_s6fyc")]
+position = Vector2(568, 384)
+
+[node name="RockPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_jejaf")
+
+[node name="RockSpawn" type="PathFollow2D" parent="RockPath"]
+position = Vector2(1152, 0)
+rotation = 1.5708
+
+[node name="HUD" parent="." instance=ExtResource("5_dv48b")]
+
+[node name="EnemyTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_co08d")
+
+[node name="LevelupSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_nv4bg")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_6ablf")
+
+[connection signal="dead" from="Player" to="." method="game_over"]
+[connection signal="lives_changed" from="Player" to="HUD" method="update_lives"]
+[connection signal="shield_changed" from="Player" to="HUD" method="update_shield"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]

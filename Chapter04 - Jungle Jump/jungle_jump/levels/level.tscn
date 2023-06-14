@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://m2qlmmp2r8bt"]
+
+[ext_resource type="Script" path="res://levels/level.gd" id="1_6oj8v"]
+[ext_resource type="TileSet" uid="uid://dhxw3f8l2saqn" path="res://assets/tilesets/tiles_world.tres" id="1_mcqs0"]
+[ext_resource type="TileSet" uid="uid://dn505hopwb4de" path="res://assets/tilesets/tiles_items.tres" id="2_4lf3x"]
+[ext_resource type="PackedScene" uid="uid://0tbyjmgrxf4g" path="res://player/player.tscn" id="2_igsqv"]
+[ext_resource type="Texture2D" uid="uid://elfqj4ni4jxs" path="res://assets/environment/back.png" id="2_vcjry"]
+[ext_resource type="Texture2D" uid="uid://c74m2qnljojh0" path="res://assets/environment/middle.png" id="3_3m2jk"]
+[ext_resource type="TileSet" uid="uid://blhd0ogpuydej" path="res://assets/tilesets/tiles_spikes.tres" id="4_xb325"]
+[ext_resource type="PackedScene" uid="uid://cd38l65v0ad6l" path="res://ui/hud.tscn" id="7_r5bgo"]
+[ext_resource type="AudioStream" uid="uid://0k12smxu6w0h" path="res://assets/audio/Grasslands Theme.ogg" id="8_bqio8"]
+[ext_resource type="AudioStream" uid="uid://0wq33pdf1sh1" path="res://assets/audio/pickup2.ogg" id="9_sbkng"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_6oj8v")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_vcjry")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 2.08165e-12)
+motion_mirroring = Vector2(880, 2.08165e-12)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture_repeat = 3
+position = Vector2(438, 243)
+texture = ExtResource("3_3m2jk")
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 880, 368)
+
+[node name="World" type="TileMap" parent="."]
+tile_set = ExtResource("1_mcqs0")
+format = 2
+layer_0/name = "world"
+
+[node name="Items" type="TileMap" parent="."]
+tile_set = ExtResource("2_4lf3x")
+format = 2
+layer_0/name = "world"
+
+[node name="Danger" type="TileMap" parent="." groups=["danger"]]
+tile_set = ExtResource("4_xb325")
+format = 2
+
+[node name="Player" parent="." instance=ExtResource("2_igsqv")]
+position = Vector2(215, 94)
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(160, 126)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("7_r5bgo")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_bqio8")
+autoplay = true
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_sbkng")
+volume_db = -10.0
+
+[node name="Ladders" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[connection signal="score_changed" from="." to="CanvasLayer/HUD" method="update_score"]
+[connection signal="died" from="Player" to="." method="_on_player_died"]
+[connection signal="life_changed" from="Player" to="CanvasLayer/HUD" method="update_life"]
+[connection signal="body_entered" from="Ladders" to="." method="_on_ladders_body_entered"]
+[connection signal="body_exited" from="Ladders" to="." method="_on_ladders_body_exited"]

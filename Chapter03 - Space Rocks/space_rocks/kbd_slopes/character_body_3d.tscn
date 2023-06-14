@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://cmd4qtfqm13rn"]
+
+[ext_resource type="Script" path="res://character_body_3d.gd" id="1_my7l2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1biu"]
+albedo_color = Color(0, 1, 0.027451, 1)
+albedo_texture_msdf = true
+roughness = 0.7
+rim_enabled = true
+rim = 0.26
+rim_tint = 0.0
+subsurf_scatter_enabled = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kdclp"]
+material = SubResource("StandardMaterial3D_d1biu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ev58e"]
+albedo_color = Color(1, 0.141176, 0.278431, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_r28i4"]
+material = SubResource("StandardMaterial3D_ev58e")
+size = Vector3(0.2, 0.5, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_00wtx"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2mcgf"]
+material = SubResource("StandardMaterial3D_00wtx")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pya0h"]
+
+[sub_resource type="Animation" id="Animation_635h1"]
+resource_name = "land"
+length = 0.15
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.3, 0.6, 1.3), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dnt4t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.3, 0.6, 1.3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x24ju"]
+_data = {
+"RESET": SubResource("Animation_dnt4t"),
+"land": SubResource("Animation_635h1")
+}
+
+[node name="CharacterBody3d" type="CharacterBody3D"]
+transform = Transform3D(1.3, 0, 0, 0, 0.6, 0, 0, 0, 1.3, 0, 0, 0)
+script = ExtResource("1_my7l2")
+
+[node name="MeshInstance3d" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_kdclp")
+
+[node name="MeshInstance3d" type="MeshInstance3D" parent="MeshInstance3d"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.496513, -0.553196)
+mesh = SubResource("PrismMesh_r28i4")
+
+[node name="MeshInstance3d2" type="MeshInstance3D" parent="MeshInstance3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.208122, 0.734273, -0.359468)
+mesh = SubResource("SphereMesh_2mcgf")
+
+[node name="MeshInstance3d3" type="MeshInstance3D" parent="MeshInstance3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.208, 0.734, -0.359)
+mesh = SubResource("SphereMesh_2mcgf")
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_pya0h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x24ju")
+}

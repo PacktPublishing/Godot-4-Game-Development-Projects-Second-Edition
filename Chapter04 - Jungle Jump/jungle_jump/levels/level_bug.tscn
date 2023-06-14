@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1qur8kfxp2kb"]
+
+[ext_resource type="Texture2D" uid="uid://elfqj4ni4jxs" path="res://assets/environment/back.png" id="2_nql8w"]
+[ext_resource type="Texture2D" uid="uid://c74m2qnljojh0" path="res://assets/environment/middle.png" id="3_ttnru"]
+[ext_resource type="PackedScene" uid="uid://0tbyjmgrxf4g" path="res://player/player.tscn" id="7_nh1qx"]
+
+[node name="level_bug" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_nql8w")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 2.08165e-12)
+motion_mirroring = Vector2(880, 2.08165e-12)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture_repeat = 3
+position = Vector2(438, 243)
+texture = ExtResource("3_ttnru")
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 880, 368)
+
+[node name="Player" parent="." instance=ExtResource("7_nh1qx")]
+position = Vector2(215, 94)
+
+[connection signal="died" from="Player" to="." method="_on_player_died"]

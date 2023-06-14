@@ -1,0 +1,187 @@
+[gd_scene load_steps=15 format=3 uid="uid://0tbyjmgrxf4g"]
+
+[ext_resource type="Texture2D" uid="uid://lqals8v555pu" path="res://assets/player_sheet.png" id="1_2q1yt"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_w5884"]
+[ext_resource type="AudioStream" uid="uid://cnmtgqiun2gco" path="res://assets/audio/jump4.ogg" id="3_cfmin"]
+[ext_resource type="AudioStream" uid="uid://g6ogr65lypmd" path="res://assets/audio/hurt1.ogg" id="3_wy6fc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n57ph"]
+size = Vector2(10, 22)
+
+[sub_resource type="Animation" id="Animation_sbwl6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_drrej"]
+resource_name = "climb"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 2]
+}
+
+[sub_resource type="Animation" id="Animation_bhcmr"]
+resource_name = "hurt"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_jfhts"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [7, 10]
+}
+
+[sub_resource type="Animation" id="Animation_dqoy0"]
+resource_name = "jump_down"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_k4ggk"]
+resource_name = "jump_up"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [11]
+}
+
+[sub_resource type="Animation" id="Animation_p6ug0"]
+resource_name = "run"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [13, 18]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qfvf6"]
+_data = {
+"RESET": SubResource("Animation_sbwl6"),
+"climb": SubResource("Animation_drrej"),
+"hurt": SubResource("Animation_bhcmr"),
+"idle": SubResource("Animation_jfhts"),
+"jump_down": SubResource("Animation_dqoy0"),
+"jump_up": SubResource("Animation_k4ggk"),
+"run": SubResource("Animation_p6ug0")
+}
+
+[sub_resource type="Gradient" id="Gradient_ad3dv"]
+colors = PackedColorArray(1, 0.874624, 0.466843, 1, 1, 0.87451, 0.466667, 0)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_w5884")
+metadata/_edit_group_ = true
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_2q1yt")
+hframes = 19
+frame = 1
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_n57ph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qfvf6")
+}
+
+[node name="Camera2d" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+limit_top = 0
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cfmin")
+volume_db = -10.0
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wy6fc")
+volume_db = -10.0
+
+[node name="Dust" type="CPUParticles2D" parent="."]
+position = Vector2(-2, 2.08165e-12)
+rotation = -1.5708
+emitting = false
+amount = 20
+lifetime = 0.45
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.7
+emission_shape = 3
+emission_rect_extents = Vector2(1, 6)
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_max = 10.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_ad3dv")

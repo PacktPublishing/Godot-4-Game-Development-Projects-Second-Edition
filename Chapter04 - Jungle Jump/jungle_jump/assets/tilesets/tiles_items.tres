@@ -1,0 +1,29 @@
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dn505hopwb4de"]
+
+[ext_resource type="Texture2D" uid="uid://5patdg8kse7b" path="res://assets/cherry_spawn.png" id="1_mqvnq"]
+[ext_resource type="Texture2D" uid="uid://b0w8vxeqdexyx" path="res://assets/gem_spawn.png" id="2_mhnjv"]
+[ext_resource type="Texture2D" uid="uid://ldtssxu78xc3" path="res://assets/environment/props.png" id="3_jfw7h"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ipjv1"]
+texture = ExtResource("1_mqvnq")
+0:0/0 = 0
+0:0/0/custom_data_0 = "cherry"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eo83j"]
+texture = ExtResource("2_mhnjv")
+0:0/0 = 0
+0:0/0/custom_data_0 = "gem"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j0eoa"]
+texture = ExtResource("3_jfw7h")
+0:3/size_in_atlas = Vector2i(3, 3)
+0:3/0 = 0
+0:3/0/texture_origin = Vector2i(0, 16)
+0:3/0/custom_data_0 = "door"
+
+[resource]
+custom_data_layer_0/name = "type"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_ipjv1")
+sources/1 = SubResource("TileSetAtlasSource_eo83j")
+sources/2 = SubResource("TileSetAtlasSource_j0eoa")

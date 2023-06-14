@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxeb65qfn8di"]
+
+[ext_resource type="Texture2D" uid="uid://cv1d6a4ud05wh" path="res://assets/bar_glass.png" id="1_6nl81"]
+[ext_resource type="Script" path="res://ui.gd" id="1_n8otj"]
+[ext_resource type="FontFile" uid="uid://dwe354n1kha7i" path="res://assets/Baloo2-Medium.ttf" id="1_pbjmh"]
+[ext_resource type="Texture2D" uid="uid://bfys6mheanew" path="res://assets/bar_red.png" id="2_8y5uy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bcc0s"]
+font = ExtResource("1_pbjmh")
+font_size = 48
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_n8otj")
+
+[node name="FuelBar" type="TextureProgressBar" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -84.0
+offset_right = 281.0
+offset_bottom = -17.0
+grow_vertical = 0
+max_value = 10.0
+step = 0.01
+value = 5.0
+nine_patch_stretch = true
+stretch_margin_left = 6
+stretch_margin_top = 6
+stretch_margin_right = 6
+stretch_margin_bottom = 6
+texture_over = ExtResource("1_6nl81")
+texture_progress = ExtResource("2_8y5uy")
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 80.0
+grow_horizontal = 0
+text = "0"
+label_settings = SubResource("LabelSettings_bcc0s")

@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://dy1cr8jojc8mb"]
+
+[ext_resource type="Script" path="res://hole.gd" id="1_p7qaw"]
+[ext_resource type="MeshLibrary" uid="uid://g7rie4nh5rkf" path="res://assets/golf_tiles.tres" id="2_1qu76"]
+[ext_resource type="PackedScene" uid="uid://b3kxxodmnhp4p" path="res://ball.tscn" id="3_lusdy"]
+[ext_resource type="PackedScene" uid="uid://b1emgboo6hxw0" path="res://arrow.tscn" id="4_dui5t"]
+[ext_resource type="PackedScene" uid="uid://d1tqw4jcecxpq" path="res://camera_gimbal.tscn" id="5_m702i"]
+[ext_resource type="PackedScene" uid="uid://c2u3c52wwav41" path="res://ui.tscn" id="6_aoebc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n3k2d"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_0jmtv"]
+sky_material = SubResource("ProceduralSkyMaterial_n3k2d")
+
+[sub_resource type="Environment" id="Environment_7778k"]
+background_mode = 2
+sky = SubResource("Sky_0jmtv")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.65
+ambient_light_energy = 1.6
+tonemap_mode = 2
+ssao_enabled = true
+sdfgi_read_sky_light = false
+sdfgi_energy = 3.0
+glow_enabled = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_37nkv"]
+rough = true
+bounce = 0.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_h2o5w"]
+height = 0.25
+radius = 0.08
+
+[node name="Hole" type="Node3D"]
+script = ExtResource("1_p7qaw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 40.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7778k")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("2_1qu76")
+physics_material = SubResource("PhysicsMaterial_37nkv")
+cell_size = Vector3(1, 1, 1)
+
+[node name="Ball" parent="." instance=ExtResource("3_lusdy")]
+
+[node name="Tee" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5244, 0.66781, -5.73366)
+
+[node name="Arrow" parent="." instance=ExtResource("4_dui5t")]
+
+[node name="CameraGimbal" parent="." instance=ExtResource("5_m702i")]
+
+[node name="Hole" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02324, 0.469095, -0.0462531)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hole"]
+shape = SubResource("CylinderShape3D_h2o5w")
+
+[node name="UI" parent="." instance=ExtResource("6_aoebc")]
+
+[connection signal="stopped" from="Ball" to="." method="_on_ball_stopped"]
+[connection signal="body_entered" from="Hole" to="." method="_on_hole_body_entered"]

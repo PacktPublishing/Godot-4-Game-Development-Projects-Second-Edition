@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://da76x2evwj40r"]
+
+[ext_resource type="Script" path="res://ring.gd" id="1_hcfhn"]
+[ext_resource type="Texture2D" uid="uid://dxin0p3ks3pe7" path="res://assets/textures/texture_09.png" id="2_555r2"]
+[ext_resource type="FontFile" uid="uid://dwe354n1kha7i" path="res://assets/Baloo2-Medium.ttf" id="3_tu0i8"]
+[ext_resource type="AudioStream" uid="uid://c6uem1m2f3nv4" path="res://assets/audio/three_tone.wav" id="4_elkke"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_o0wvs"]
+height = 0.5
+radius = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23r6f"]
+shading_mode = 0
+albedo_texture = ExtResource("2_555r2")
+uv1_scale = Vector3(12, 1, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_y6qnj"]
+material = SubResource("StandardMaterial3D_23r6f")
+inner_radius = 3.5
+outer_radius = 4.0
+
+[node name="Ring" type="Area3D"]
+collision_mask = 2
+script = ExtResource("1_hcfhn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, -1.5246e-23, -1.5246e-23, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_o0wvs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("TorusMesh_y6qnj")
+skeleton = NodePath("../..")
+
+[node name="Label3D" type="Label3D" parent="."]
+billboard = 1
+double_sided = false
+text = "100"
+font = ExtResource("3_tu0i8")
+font_size = 720
+outline_size = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_elkke")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

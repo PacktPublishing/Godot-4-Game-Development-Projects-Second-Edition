@@ -140,6 +140,7 @@ colors = PackedColorArray(1, 0.874624, 0.466843, 1, 1, 0.87451, 0.466667, 0)
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 13
+floor_snap_length = 8.0
 script = ExtResource("1_w5884")
 metadata/_edit_group_ = true
 

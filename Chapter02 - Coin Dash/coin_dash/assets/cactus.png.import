@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/cactus.png-366c3b67d0b3dfc72dbc4a57fb23b7b9.c
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

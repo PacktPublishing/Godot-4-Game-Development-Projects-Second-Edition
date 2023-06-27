@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/pow-frame-5.png-ae30d1cc0eb42bd0356b62b2a7f64
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

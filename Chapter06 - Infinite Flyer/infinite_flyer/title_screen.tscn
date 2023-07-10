@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://co0vspf8slju8"]
 
 [ext_resource type="Script" path="res://title_screen.gd" id="1_23umi"]
-[ext_resource type="Texture2D" uid="uid://ddutf7nnbm571" path="res://assets/styled_sky.hdr" id="1_rwdvr"]
+[ext_resource type="Texture2D" uid="uid://dn6aqj5abxk70" path="res://assets/styled_sky.hdr" id="1_rwdvr"]
 [ext_resource type="Texture2D" uid="uid://c5s12qnopne4l" path="res://assets/buttons/play_button.png" id="2_qaqa2"]
 [ext_resource type="Texture2D" uid="uid://b3vkbqv2odcw7" path="res://assets/buttons/play_button_pr.png" id="3_go85n"]
 [ext_resource type="Texture2D" uid="uid://bbufg5c378337" path="res://assets/buttons/play_button_h.png" id="4_b0vnl"]
@@ -70,7 +70,7 @@ offset_top = -270.0
 offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Game Title"
+text = "Infinite Flyer"
 label_settings = SubResource("LabelSettings_eycbd")
 horizontal_alignment = 1
 

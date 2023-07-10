@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Space Rocks"
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.0")
+config/features=PackedStringArray("4.1")
 config/icon="res://player_ship_icon.png"
 
 [display]

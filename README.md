@@ -7,8 +7,9 @@ This is the code repository for [Godot 4 Game Development Projects - Second Edit
 **Build five cross-platform 2D and 3D games using one of the most powerful open source game engines**
 
 ## What is this book about?
+The Godot 4 Game Development Projects book introduces the Godot game engine and its feature-rich 4.0 version. With an array of new capabilities, Godot 4.0 is a strong alternative to expensive commercial game engines. If you’re a beginner, this user-friendly book will help you learn game development techniques, while experienced developers will understand how to use this powerful and customizable tool to bring their creative visions to life.
 
-* This book covers the following exciting features:
+This book covers the following exciting features:
 * If you're new to Godot, get started with the game engine and editor
 * Learn about the new features of Godot 4.0
 * Build games in 2D and 3D using design and coding best practices

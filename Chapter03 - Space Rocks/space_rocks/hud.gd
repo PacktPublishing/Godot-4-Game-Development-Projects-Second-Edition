@@ -3,8 +3,10 @@ extends CanvasLayer
 signal start_game
 
 @onready var lives_counter = $MarginContainer/HBoxContainer/LivesCounter.get_children()
-@onready var score_label = $MarginContainer/HBoxContainer/Score
+@onready var score_label = $MarginContainer/HBoxContainer/ScoreLabel
 @onready var shield_bar = $MarginContainer/HBoxContainer/ShieldBar
+@onready var message = $VBoxContainer/Message
+@onready var start_button = $VBoxContainer/StartButton
 
 var bar_textures = {
 	"green": preload("res://assets/bar_green_200.png"),
@@ -21,8 +23,8 @@ func update_shield(value):
 	shield_bar.value = value
 	
 func show_message(text):
-	$Message.text = text
-	$Message.show()
+	message.text = text
+	message.show()
 	$Timer.start()
 	
 func update_score(value):
@@ -35,14 +37,14 @@ func update_lives(value):
 func game_over():
 	show_message("Game Over")
 	await $Timer.timeout
-	$StartButton.show()
+	start_button.show()
 
 
 func _on_start_button_pressed():
-	$StartButton.hide()
+	start_button.hide()
 	start_game.emit()
 
 
 func _on_timer_timeout():
-	$Message.hide()
-	$Message.text = ""
+	message.hide()
+	message.text = ""

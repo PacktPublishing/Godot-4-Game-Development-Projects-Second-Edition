@@ -20,23 +20,23 @@ func _process(delta):
 	
 	# Choose which animation to play
 	if velocity.length() > 0:
-		$AnimatedSprite2d.animation = "run"
+		$AnimatedSprite2D.animation = "run"
 	else:
-		$AnimatedSprite2d.animation = "idle"
+		$AnimatedSprite2D.animation = "idle"
 		
 	# Flip the sprite based on movement direction
 	if velocity.x != 0:
-		$AnimatedSprite2d.flip_h = velocity.x < 0
+		$AnimatedSprite2D.flip_h = velocity.x < 0
 
 
 func start():
 	set_process(true)
 	position = screensize / 2
-	$AnimatedSprite2d.animation = "idle"
+	$AnimatedSprite2D.animation = "idle"
 
 
 func die():
-	$AnimatedSprite2d.animation = "hurt"
+	$AnimatedSprite2D.animation = "hurt"
 	set_process(false)
 
 	

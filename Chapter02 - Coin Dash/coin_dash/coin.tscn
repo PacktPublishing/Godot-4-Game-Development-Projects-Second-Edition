@@ -60,11 +60,11 @@ radius = 24.0
 [node name="Coin" type="Area2D" groups=["coins"]]
 script = ExtResource("1_c7pjk")
 
-[node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_4007w")
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_c3qej")
 
 [node name="Timer" type="Timer" parent="."]

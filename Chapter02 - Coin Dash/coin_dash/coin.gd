@@ -7,7 +7,7 @@ func _ready():
 
 
 func pickup():
-	$CollisionShape2d.set_deferred("disabled", true)
+	$CollisionShape2D.set_deferred("disabled", true)
 	var tw = create_tween().set_parallel().set_trans(Tween.TRANS_QUAD)
 	tw.tween_property(self, "scale", scale * 3, 0.3)
 	tw.tween_property(self, "modulate:a", 0.0, 0.3)
@@ -16,8 +16,8 @@ func pickup():
 
 
 func _on_timer_timeout():
-	$AnimatedSprite2d.frame = 0
-	$AnimatedSprite2d.play()
+	$AnimatedSprite2D.frame = 0
+	$AnimatedSprite2D.play()
 
 
 func _on_area_entered(area):

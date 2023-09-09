@@ -75,14 +75,14 @@ size = Vector2(28, 41.5)
 script = ExtResource("1_kows7")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ls3ev")
 animation = &"idle"
 offset = Vector2(0, -5)
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5am75")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

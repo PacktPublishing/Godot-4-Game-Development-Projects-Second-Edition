@@ -16,6 +16,6 @@ In this folder you can find the assets (images, animations, audio, etc) that you
 
     * [Chapter 6: Infinite Flyer](https://github.com/PacktPublishing/Godot-4-Game-Development-Projects-Second-Edition/raw/main/Downloads/flyer_assets.zip)
 
-1. When the download is completed, double-click the file to "unzip" it. You will then have a folder called "assets".
+1. When the download is completed, double-click the file to unzip it. You will then have a folder called "assets".
 
-1. Drag the "assets" folder and drop it on the **FileSystem** tab of your Godot editor window.
+1. Drag the "assets" folder and drop it on the **FileSystem** tab of your Godot editor window. This will copy all the files into your Godot project.

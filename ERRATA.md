@@ -17,3 +17,7 @@ Should be the following instruction:
 ## Chapter 3
 
 p. 73 - [TYPO] On step 7, when adding the `VBoxContainer`, the layout option in the dropdown is called "HCenter Wide", not "Center Wide".
+
+## Chapter 4
+
+p. 99 - [TYPO] In the table of input actions, 'S' is listed for "up" and `W` for "down". This should be reversed.

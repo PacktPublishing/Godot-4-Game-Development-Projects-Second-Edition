@@ -28,6 +28,14 @@ Should be the following instruction:
 
 ## Chapter 3
 
+p. 66 - [CLARIFICATION] The following sentence:
+
+> Don’t forget to drag rock.tscn onto the Rock property.
+
+Should be moved to after the second code snippet (defining `spawn_rocks()`).
+
+p. 69 - [TYPO] In the last code snippet, the node name should be `Sprite2D` not `Sprite2d`
+
 p. 73 - [TYPO] On step 7, when adding the `VBoxContainer`, the layout option in the dropdown is called "HCenter Wide", not "Center Wide".
 
 ## Chapter 4

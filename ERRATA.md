@@ -32,6 +32,8 @@ Should be the following instruction:
 
 ## Chapter 3
 
+p. 58 - [CLARIFICATION] "see the Appendix for an overview of transforms" should instead refer to Chapter 5, where transforms are discussed in more detail
+
 p. 66 - [CLARIFICATION] The following sentence:
 
 > Don’t forget to drag rock.tscn onto the Rock property.
@@ -64,3 +66,9 @@ Should be a reminder to assign the enemy scene to the property in the Inspector.
 ## Chapter 4
 
 p. 99 - [TYPO] In the table of input actions, 'S' is listed for "up" and `W` for "down". This should be reversed.
+
+p. 110 - [TYPO] In the "Scene Setup" section, the object's **Collision/Layer** should be set to "items", not "collectibles".
+
+## Chapter 5
+
+p. 149 - [CLARIFICATION] "See the appendix" should instead refer to Chapter 7.
